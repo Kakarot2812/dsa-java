@@ -27,10 +27,10 @@ Space Complexity:
     O(N + E)
     For adjacency list, queue, and distance array.
 */
-class Pair{
+class Flight{
         int node;
         int distance;
-        public Pair(int node,int distance){
+        public Flight(int node,int distance){
             this.node = node;
             this.distance = distance;
         }
@@ -47,13 +47,13 @@ class Pair{
     }
     class CheapestFlight{
         public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
-            ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
+            ArrayList<ArrayList<Flight>> adj = new ArrayList<>();
             for(int i=0;i<n;i++){
                 adj.add(new ArrayList<>());
             }
             int m = flights.length;
             for(int i=0;i<m;i++){
-                adj.get(flights[i][0]).add(new Pair(flights[i][1],flights[i][2]));
+                adj.get(flights[i][0]).add(new Flight(flights[i][1],flights[i][2]));
             }
             int[] dis = new int[n];
             Arrays.fill(dis,Integer.MAX_VALUE);
@@ -69,7 +69,7 @@ class Pair{
                 int distance = cell.distance;
 
                 if(stop > k) continue;
-                for(Pair neighbour : adj.get(node)){
+                for(Flight neighbour : adj.get(node)){
                     int adjNode = neighbour.node;
                     int weight = neighbour.distance;
 
